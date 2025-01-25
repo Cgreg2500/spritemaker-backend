@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app/app
+      - ./temp_uploads:/app/temp_uploads
+      - ./sounds:/app/sounds
+      - ../models:/app/models
+    environment:
+      - DEBUG=1
+      - MAX_UPLOAD_SIZE=10485760
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
